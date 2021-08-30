@@ -1,0 +1,23 @@
+<div class="center">
+    <h1>Download Video From YouTube</h1>
+</div>
+<div id='content'>
+    <form #videoForm='ngForm' (ngSubmit)='addVideoToQueue(videoForm)'>
+        <mat-form-field>
+            <input matInput placeholder="YouTube URL" required #url='ngModel' name='url' [(ngModel)]='videoData.url'
+                [disabled]='progress != 0'>
+            <mat-error *ngIf="url.invalid && (url.dirty || url.touched)">
+                <div *ngIf="url.errors">
+                    URL is required.
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button type='submit'>Convert</button>
+    </form>
+    
+    <br>
+    <mat-card *ngIf='progress > 0'>
+        Downloading: {{progress}}%
+    </mat-card>
+</div>
